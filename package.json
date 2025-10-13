@@ -1,7 +1,7 @@
 {
   "name": "mongoose-migration",
-  "version": "0.2.0",
-  "description": "Data migration tool for Mongoose",
+  "version": "0.3.0",
+  "description": "SPAN fork of Data migration tool for Mongoose",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,14 +25,13 @@
   },
   "homepage": "https://github.com/mccraveiro/mongoose-migration",
   "dependencies": {
-    "commander": "^2.5.0",
-    "slug": "^0.8.0",
-    "prompt": "^0.2.14",
     "colors": "^1.0.3",
-    "mongoose": "^3.8.19"
+    "commander": "^2.5.0",
+    "mongoose": "^8.19.1",
+    "prompt": "^0.2.14",
+    "slug": "^11.0.1"
   },
   "devDependencies": {
-    "jsup": "0.0.1",
-    "semver": "^4.1.0"
+    "semver": "^7.7.3"
   }
 }
