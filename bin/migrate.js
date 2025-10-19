@@ -194,7 +194,7 @@ function loopMigrations(direction, migrations, cb) {
 }
 
 function applyMigration(direction, name, cb) {
-  console.log(`mongoose-migration | applyMigration(${up}, ${name})...`);
+  console.log(`mongoose-migration | applyMigration(${direction}, ${name})...`);
 
   var migration = require(process.cwd() + '/' + CONFIG.basepath + '/' + name);
   var timestamp = getTimestamp(name);
