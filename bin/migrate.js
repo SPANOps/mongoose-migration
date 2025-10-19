@@ -5,7 +5,6 @@
 var program = require('commander');
 var prompt = require('prompt');
 var colors = require('colors/safe');
-var slug = require('slug');
 var path = require('path');
 var fs = require('fs');
 
@@ -110,7 +109,7 @@ function createMigration(description) {
   CONFIG = loadConfiguration();
 
   var timestamp = Date.now();
-  var migrationName = timestamp + '-' + slug(description) + '.js';
+  var migrationName = timestamp + '-' + description + '.js';
   var template = path.normalize(__dirname + '/../template/migration.js');
   var filename = path.normalize(CONFIG.basepath + '/' + migrationName);
 
@@ -153,7 +152,8 @@ function migrate(direction, cb, number_of_migrations) {
   }
 
   var migrations = fs.readdirSync(CONFIG.basepath);
-
+  console.log('listing migrations...');
+  console.log(migrations.join('\n'));
   connnectDB();
 
   migrations = migrations.filter(function (migration_name) {
