@@ -69,7 +69,6 @@ function updateTimestamp(timestamp, cb) {
 }
 
 function init() {
-  console.log('mongoose-migration | init...');
   if (fs.existsSync(config_path)) {
     error(config_filename + ' already exists!');
   }
@@ -127,7 +126,6 @@ function createMigration(description) {
 }
 
 function connnectDB() {
-  console.log('mongoose-migration | connectDB...');
   // load local app mongoose instance
   var mongoose = require(process.cwd() + '/node_modules/mongoose');
   mongoose.connect(CONFIG.connection);
@@ -143,8 +141,6 @@ function getTimestamp(name) {
 }
 
 function migrate(direction, cb, number_of_migrations) {
-  console.log('mongoose-migration | migrate...');
-
   CONFIG = loadConfiguration();
 
   if (!number_of_migrations) {
@@ -156,8 +152,6 @@ function migrate(direction, cb, number_of_migrations) {
   }
 
   var migrations = fs.readdirSync(CONFIG.basepath);
-  console.log('listing migrations...');
-  console.log(migrations.join('\n'));
   connnectDB();
 
   migrations = migrations.filter(function (migration_name) {
