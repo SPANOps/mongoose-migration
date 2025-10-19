@@ -37,7 +37,7 @@ program.parse(process.argv);
 
 // Default command ?
 if (program.rawArgs.length < 3) {
-  migrate('up', process.exit, 5); // Number.POSITIVE_INFINITY);
+  migrate('up', process.exit, 1); // Number.POSITIVE_INFINITY);
 }
 
 /*
@@ -168,8 +168,6 @@ function migrate(direction, cb, number_of_migrations) {
 }
 
 function loopMigrations(direction, migrations, cb) {
-  console.log('mongoose-migration | loopMigrations...');
-
   if (direction == 0 || migrations.length == 0) {
     return cb();
   }
