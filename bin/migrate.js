@@ -5,7 +5,6 @@
 var program = require('commander');
 var prompt = require('prompt');
 var colors = require('colors/safe');
-var slug = require('slug');
 var path = require('path');
 var fs = require('fs');
 
@@ -55,6 +54,7 @@ function success(msg) {
 }
 
 function loadConfiguration() {
+  console.log('mongoose-migration | loadConfiguration...');
   try {
     return require(config_path);
   } catch (e) {
@@ -110,7 +110,7 @@ function createMigration(description) {
   CONFIG = loadConfiguration();
 
   var timestamp = Date.now();
-  var migrationName = timestamp + '-' + slug(description) + '.js';
+  var migrationName = timestamp + '-' + description + '.js';
   var template = path.normalize(__dirname + '/../template/migration.js');
   var filename = path.normalize(CONFIG.basepath + '/' + migrationName);
 
@@ -141,7 +141,6 @@ function getTimestamp(name) {
 }
 
 function migrate(direction, cb, number_of_migrations) {
-
   CONFIG = loadConfiguration();
 
   if (!number_of_migrations) {
@@ -153,7 +152,6 @@ function migrate(direction, cb, number_of_migrations) {
   }
 
   var migrations = fs.readdirSync(CONFIG.basepath);
-
   connnectDB();
 
   migrations = migrations.filter(function (migration_name) {
@@ -170,7 +168,6 @@ function migrate(direction, cb, number_of_migrations) {
 }
 
 function loopMigrations(direction, migrations, cb) {
-
   if (direction == 0 || migrations.length == 0) {
     return cb();
   }
@@ -189,6 +186,8 @@ function loopMigrations(direction, migrations, cb) {
 }
 
 function applyMigration(direction, name, cb) {
+  console.log(`mongoose-migration | applyMigration(${direction}, ${name})...`);
+
   var migration = require(process.cwd() + '/' + CONFIG.basepath + '/' + name);
   var timestamp = getTimestamp(name);
 

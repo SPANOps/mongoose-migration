@@ -28,8 +28,7 @@
     "colors": "^1.0.3",
     "commander": "^2.5.0",
     "mongoose": "^8.19.1",
-    "prompt": "^0.2.14",
-    "slug": "^11.0.1"
+    "prompt": "^0.2.14"
   },
   "devDependencies": {
     "semver": "^7.7.3"
